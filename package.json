@@ -2,9 +2,11 @@
   "name": "wze-tournamentmanager",
   "version": "1.0.0",
   "description": "manage your wze tournaments, swiss style",
-  "main": "./server/index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "type": "module",
   "repository": {
@@ -29,19 +31,28 @@
   "dependencies": {
     "better-sqlite3": "^11.9.1",
     "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "nodemon": "^3.1.9"
+    "express": "^5.1.0"
   },
-  "pkg": {
-    "scripts": "server/**/*.js",
-    "assets": [
-      "frontend/dist/**/*",
-      "db/tournament.sqlite"
+  "devDependencies": {
+    "electron": "^35.1.5",
+    "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9"
+  },
+  "build": {
+    "appId": "com.wze.tournament-manager",
+    "productName": "Tournament Manager",
+    "icon": "./tournament-ui/src/assets/wze-gr.png",
+    "files": [
+      "**/*",
+      "tournament-ui/dist/**/*",
+      "database.db"
     ],
-    "targets": [
-      "node18-win-x64",
-      "node18-linux-x64",
-      "node18-macos-x64"
-    ]
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "./tournament-ui/src/assets/wze-gr.png"
+    }
   }
 }
