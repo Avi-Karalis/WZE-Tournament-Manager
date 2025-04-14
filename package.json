@@ -1,0 +1,28 @@
+{
+  "name": "wze-tournamentmanager",
+  "version": "1.0.0",
+  "description": "manage your wze tournaments, swiss style",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avi-Karalis/WZE-Tournament-Manager.git"
+  },
+  "keywords": [
+    "wze",
+    "wargame",
+    "manager",
+    "warzone",
+    "eternal",
+    "mutant",
+    "chronicles"
+  ],
+  "author": "Avi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avi-Karalis/WZE-Tournament-Manager/issues"
+  },
+  "homepage": "https://github.com/Avi-Karalis/WZE-Tournament-Manager#readme"
+}
