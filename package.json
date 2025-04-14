@@ -29,6 +29,19 @@
   "dependencies": {
     "better-sqlite3": "^11.9.1",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9"
+  },
+  "pkg": {
+    "scripts": "server/**/*.js",
+    "assets": [
+      "frontend/dist/**/*",
+      "db/tournament.sqlite"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-linux-x64",
+      "node18-macos-x64"
+    ]
   }
 }

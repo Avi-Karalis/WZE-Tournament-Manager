@@ -20,11 +20,7 @@ db.exec(`
     p2Score INTEGER
   );
 
-  CREATE TABLE IF NOT EXISTS opponents (
-    player TEXT,
-    opponent TEXT,
-    UNIQUE(player, opponent)
-  );
+
 `);
 
 export default db;
