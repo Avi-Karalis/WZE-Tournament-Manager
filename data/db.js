@@ -7,7 +7,8 @@ db.exec(`
     name TEXT PRIMARY KEY,
     tournamentPoints INTEGER DEFAULT 0,
     victoryPoints INTEGER DEFAULT 0,
-    hasBye INTEGER DEFAULT 0
+    hasBye INTEGER DEFAULT 0,
+    faction TEXT
   );
 
   CREATE TABLE IF NOT EXISTS matches (

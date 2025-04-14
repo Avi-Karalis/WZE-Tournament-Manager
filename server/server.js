@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import {Player} from '../lib/player.js';
-import db from '../lib/db.js';
+import db from '../data/db.js';
 import { getAllPlayers, savePlayer } from '../lib/player-store.js';
 import { pairNextRound, recordMatchResult, assignBye } from '../lib/pairing.js';
 
