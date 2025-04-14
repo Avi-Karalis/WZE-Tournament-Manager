@@ -2,7 +2,7 @@
   "name": "wze-tournamentmanager",
   "version": "1.0.0",
   "description": "manage your wze tournaments, swiss style",
-  "main": "index.js",
+  "main": "./server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/Avi-Karalis/WZE-Tournament-Manager/issues"
   },
-  "homepage": "https://github.com/Avi-Karalis/WZE-Tournament-Manager#readme"
+  "homepage": "https://github.com/Avi-Karalis/WZE-Tournament-Manager#readme",
+  "dependencies": {
+    "better-sqlite3": "^11.9.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
 }
