@@ -21,6 +21,11 @@ db.exec(`
   );
 
 
+  CREATE TABLE IF NOT EXISTS opponents (
+    player TEXT,
+    opponent TEXT,
+    UNIQUE(player, opponent)
+  );
 `);
 
 export default db;

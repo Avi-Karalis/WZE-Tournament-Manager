@@ -5,6 +5,7 @@
     </button>
     <div>
       <h2 class="text-xl mt-4">Round {{ round }}</h2>
+      <button @click="resetTournament" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Preemptive Reset</button>
     </div>
     <div v-if="round > 3">
       <h2 class="text-xl mt-4">Tournament Over</h2>
@@ -65,6 +66,7 @@ async function submitAll() {
 async function resetTournament() {
   await axios.post('http://localhost:3000/reset')
   pairings.value={};
+  round.value=0;
   emit('refreshPlayers');
 }
 </script>

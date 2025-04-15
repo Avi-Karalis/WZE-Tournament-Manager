@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { Player } from "../lib/player.js";
 import db from "../data/db.js";
-import { getAllPlayers, savePlayer } from "../lib/player-store.js";
+import { getAllPlayers, savePlayer} from "../lib/player-store.js";
 import { pairNextRound, recordMatchResult, assignBye } from "../lib/pairing.js";
 import path, { dirname } from "path";
 const app = express();
@@ -45,55 +45,51 @@ function resetTournament() {
       console.log("Tournament reset successful.");
     }
   );
+  db.exec("DELETE FROM opponents", (err) => {
+    if (err) {
+      console.error("Error deleting matches:", err);
+      return;
+    }
+  });
 }
 
-app.post("/round", (req, res) => {
-  let { fromFront } = req.body;
+    app.post("/round", (req, res) => {
+        let { fromFront } = req.body;
 
-  const stmt = db.prepare(`
-        SELECT AVG(p1Score + p2Score) AS avgVP
-        FROM matches
-        WHERE round = ?;
-      `);
-  const result = stmt.get(round);
-  const avgVP = result?.avgVP ?? 0;
+        const stmt = db.prepare(`
+    SELECT AVG(p1Score + p2Score) AS avgVP
+    FROM matches
+    WHERE round = ?;
+  `);
+        const result = stmt.get(round);
+        const avgVP = result?.avgVP ?? 0;
 
-  // 2. Update the p1Score for the match where player2 = 'BYE'
-  db.prepare(
-    `
-        UPDATE matches
-        SET p1Score = ?
-        WHERE round = ? AND player2 = 'BYE';
-      `
-  ).run(avgVP, round);
+        // Update BYE match (if exists)
+        db.prepare(`
+    UPDATE matches
+    SET p1Score = ?
+    WHERE round = ? AND player2 = 'BYE';
+  `).run(avgVP, round);
 
-  // 3. Get the name of the player who got the BYE
-  const match = db
-    .prepare(
-      `
-        SELECT player1
-        FROM matches
-        WHERE round = ? AND player2 = 'BYE';
-      `
-    )
-    .get(round);
+        const match = db.prepare(`
+    SELECT player1
+    FROM matches
+    WHERE round = ? AND player2 = 'BYE';
+  `).get(round);
 
-  if (match) {
-    const playerName = match.player1;
+        if (match) {
+            const playerName = match.player1;
+            db.prepare(`
+      UPDATE players
+      SET victoryPoints = victoryPoints + ?
+      WHERE name = ?;
+    `).run(Math.floor(avgVP), playerName);
+        }
 
-    // 4. Update that player's victoryPoints
-    db.prepare(
-      `
-          UPDATE players
-          SET victoryPoints = victoryPoints + ?
-          WHERE name = ?;
-        `
-    ).run(Math.floor(avgVP), playerName);
-    incrementRound();
+        incrementRound();
 
-    res.json(round);
-  }
-});
+        res.json({ success: true, newRound: round });
+    });
 
 app.get("/players", (req, res) => {
   res.json(getAllPlayers());

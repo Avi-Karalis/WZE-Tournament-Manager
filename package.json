@@ -45,6 +45,7 @@
     "productName": "Tournament Manager",
     "icon": "./tournament-ui/src/assets/wze-gr.png",
     "files": [
+      "main.js",
       "server/**/*",
       "./data/**/*",
       "./lib/**/*",
