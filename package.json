@@ -43,7 +43,7 @@
   "build": {
     "appId": "com.wze.tournament-manager",
     "productName": "Tournament Manager",
-    "icon": "./tournament-ui/src/assets/wze-gr.png",
+    "icon": "./tournament-ui/src/assets/icon.png",
     "files": [
       "main.js",
       "server/**/*",
@@ -57,7 +57,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "./tournament-ui/src/assets/wze-gr.png"
+      "icon": "./tournament-ui/src/assets/icon.png"
     }
   }
 }
