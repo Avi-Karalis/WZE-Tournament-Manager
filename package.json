@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "rebuild": "electron-rebuild"
   },
   "type": "module",
   "repository": {
@@ -34,6 +35,7 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.7.2",
     "electron": "^35.1.5",
     "electron-builder": "^26.0.12",
     "electron-rebuild": "^3.2.9"
@@ -43,7 +45,9 @@
     "productName": "Tournament Manager",
     "icon": "./tournament-ui/src/assets/wze-gr.png",
     "files": [
-      "**/*",
+      "server/**/*",
+      "./data/**/*",
+      "./lib/**/*",
       "tournament-ui/dist/**/*",
       "database.db"
     ],
